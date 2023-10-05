@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from main import generate, transcribe
 import os
-
+import awsgi
 # Create a Flask application
 app = Flask(__name__)
 #CORS(app)
@@ -74,6 +74,8 @@ def handle_transcribe():
     # Return the transcription result
     return jsonify(result=transcript)
 
+def lambda_handler(event, context):
+    return awsgi.response(app, event, context)
 
 if __name__ == '__main__':
     # Run the Flask application
