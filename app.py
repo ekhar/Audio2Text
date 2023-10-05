@@ -1,11 +1,15 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from main import generate, transcribe
 import os
 
 # Create a Flask application
 app = Flask(__name__)
-CORS(app)
+#CORS(app)
+
+@app.route("/")
+def home():
+    return render_template("index.html")
 
 # Define a route for "/api/hello" that returns "Hello, World!"
 @app.route('/api/hello')
