@@ -4,7 +4,7 @@ from main import generate, transcribe
 import os
 # Create a Flask application
 app = Flask(__name__)
-#CORS(app)
+CORS(app)
 
 #@app.route("/")
 #def home():
@@ -21,7 +21,6 @@ def custom():
         # Get JSON data from the request
         data = request.get_json()
 
-        print(data)
         filepath = os.path.join('uploads', data["filename"])
         if 'prompt' in data and data["filename"]:
             param_value = data['prompt']
@@ -64,8 +63,7 @@ def handle_transcribe():
     # Locate the file and transcribe
     try:
         filepath = os.path.join('uploads', filename)
-        transcript = transcribe(f"{filepath}")  # Your existing transcription function
-        print("transcipt: ", transcript) 
+        transcript = transcribe(filepath)  # Your existing transcription function
     except Exception as e:
         # Handle potential errors like FileNotFound or issues in the transcription function
         return jsonify(error=str(e)), 500
