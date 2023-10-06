@@ -1,6 +1,7 @@
 import openai
 
-#api_key = 
+with open('OPENAI', 'r') as file:
+    api_key = file.read()
 
 def transcribe(audio_file):
     with open(audio_file, "rb") as audio_file:
