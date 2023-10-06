@@ -2,14 +2,13 @@ from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from main import generate, transcribe
 import os
-import awsgi
 # Create a Flask application
 app = Flask(__name__)
 #CORS(app)
 
-@app.route("/")
-def home():
-    return render_template("index.html")
+#@app.route("/")
+#def home():
+    #return render_template("index.html")
 
 # Define a route for "/api/hello" that returns "Hello, World!"
 @app.route('/api/hello')
@@ -73,9 +72,6 @@ def handle_transcribe():
     
     # Return the transcription result
     return jsonify(result=transcript)
-
-def lambda_handler(event, context):
-    return awsgi.response(app, event, context)
 
 if __name__ == '__main__':
     # Run the Flask application
