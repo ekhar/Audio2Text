@@ -6,9 +6,9 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-#@app.route("/")
-#def home():
-    #return render_template("index.html")
+@app.route("/")
+def home():
+    return 'Hello, HOME' 
 
 # Define a route for "/api/hello" that returns "Hello, World!"
 @app.route('/api/hello')
